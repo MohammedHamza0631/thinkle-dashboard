@@ -1,0 +1,57 @@
+.content-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: var(--card-shadow);
+  }
+  
+  .content-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .content-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #4CAF50;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  .content-title {
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .content-stats {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .stat-label {
+    font-size: 14px;
+    color: var(--dark-gray);
+  }
+  
+  .stat-value {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .content-divider {
+    height: 1px;
+    background-color: var(--medium-gray);
+    margin: 10px 0;
+  }

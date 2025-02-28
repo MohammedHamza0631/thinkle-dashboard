@@ -1,0 +1,56 @@
+.stat-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .stat-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-color);
+  }
+  
+  .growth-badge {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: var(--green);
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+  }
+  
+  .growth-arrow {
+    margin-right: 2px;
+  }
+  
+  .stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  
+  .stat-subtext {
+    font-size: 14px;
+    color: var(--dark-gray);
+  }
+  
+  @media (max-width: 768px) {
+    .stat-card {
+      min-width: 100%;
+      margin-bottom: 15px;
+    }
+  }

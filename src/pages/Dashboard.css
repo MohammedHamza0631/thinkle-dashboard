@@ -1,0 +1,38 @@
+.dashboard {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .dashboard-header {
+    margin-bottom: 30px;
+  }
+  
+  .dashboard-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  
+  .dashboard-subtitle {
+    font-size: 16px;
+    color: var(--dark-gray);
+  }
+  
+  .stats-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  /* Mobile styles */
+  @media (max-width: 768px) {
+    .dashboard {
+      padding: 20px;
+      padding-top: calc(var(--header-height) + 20px);
+    }
+  
+    .stats-container {
+      flex-direction: column;
+    }
+  }
