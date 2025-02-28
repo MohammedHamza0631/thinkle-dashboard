@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu, Home, FileText, DollarSign, TrendingUp, Share2, HelpCircle, User, LogOut, Info, ChevronDown, Wand2 } from 'lucide-react';
+import { Menu, X, Home, FileText, DollarSign, TrendingUp, Share2, HelpCircle, User, LogOut, Info, ChevronDown, Wand2 } from 'lucide-react';
 import './Sidebar.css';
 
 interface SidebarProps {
@@ -11,13 +11,16 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
     const [coachesExpanded, setCoachesExpanded] = useState(false);
     const [creatorExpanded, setCreatorExpanded] = useState(true);
+    const [activeSection, setActiveSection] = useState('creator');
 
     const toggleCoaches = () => {
         setCoachesExpanded(!coachesExpanded);
+        setActiveSection('coaches');
     };
 
     const toggleCreator = () => {
         setCreatorExpanded(!creatorExpanded);
+        setActiveSection('creator');
     };
 
     return (
@@ -33,11 +36,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                 <div className="sidebar-header">
                     <h1 className="logo">thinkle.</h1>
                     <button className="menu-toggle mobile-only" onClick={toggleSidebar}>
-                        <Menu size={24} />
+                        <X size={24} />
                     </button>
                 </div>
 
-                <div className={`sidebar-section ${coachesExpanded ? 'expanded' : ''}`}>
+                <div className={`sidebar-section ${coachesExpanded ? 'expanded' : ''} ${activeSection === 'coaches' ? 'active' : ''}`}>
                     <div className="section-header" onClick={toggleCoaches}>
                         <User size={16} />
                         <span>Coaches</span>
@@ -50,7 +53,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                     )}
                 </div>
 
-                <div className={`sidebar-section active ${creatorExpanded ? 'expanded' : ''}`}>
+                <div className={`sidebar-section ${creatorExpanded ? 'expanded' : ''} ${activeSection === 'creator' ? 'active' : ''}`}>
                     <div className="section-header" onClick={toggleCreator}>
                         <Wand2 size={16} />
                         <span>Thinkle Creator</span>
@@ -60,39 +63,73 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                     {creatorExpanded && (
                         <nav className="sidebar-nav">
                             <NavLink to="/" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                                <Home size={16} />
-                                <span>Dashboard</span>
+                                {({ isActive }) => (
+                                    <>
+                                        <Home size={16} />
+                                        <span>Dashboard</span>
+                                        {isActive && <span className="dot"></span>}
+                                    </>
+                                )}
                             </NavLink>
 
                             <NavLink to="/submission" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                                <FileText size={16} />
-                                <span>Submission</span>
-                                {true && <span className="dot"></span>}
+                                {({ isActive }) => (
+                                    <>
+                                        <FileText size={16} />
+                                        <span>Submission</span>
+                                        {isActive && <span className="dot"></span>}
+                                    </>
+                                )}
                             </NavLink>
 
                             <NavLink to="/earnings" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                                <DollarSign size={16} />
-                                <span>Earnings</span>
+                                {({ isActive }) => (
+                                    <>
+                                        <DollarSign size={16} />
+                                        <span>Earnings</span>
+                                        {isActive && <span className="dot"></span>}
+                                    </>
+                                )}
                             </NavLink>
 
                             <NavLink to="/trending" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                                <TrendingUp size={16} />
-                                <span>Trending</span>
+                                {({ isActive }) => (
+                                    <>
+                                        <TrendingUp size={16} />
+                                        <span>Trending</span>
+                                        {isActive && <span className="dot"></span>}
+                                    </>
+                                )}
                             </NavLink>
 
                             <NavLink to="/refer" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                                <Share2 size={16} />
-                                <span>Refer</span>
+                                {({ isActive }) => (
+                                    <>
+                                        <Share2 size={16} />
+                                        <span>Refer</span>
+                                        {isActive && <span className="dot"></span>}
+                                    </>
+                                )}
                             </NavLink>
 
                             <NavLink to="/help" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                                <HelpCircle size={16} />
-                                <span>Help</span>
+                                {({ isActive }) => (
+                                    <>
+                                        <HelpCircle size={16} />
+                                        <span>Help</span>
+                                        {isActive && <span className="dot"></span>}
+                                    </>
+                                )}
                             </NavLink>
 
                             <NavLink to="/profile" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-                                <User size={16} />
-                                <span>Profile</span>
+                                {({ isActive }) => (
+                                    <>
+                                        <User size={16} />
+                                        <span>Profile</span>
+                                        {isActive && <span className="dot"></span>}
+                                    </>
+                                )}
                             </NavLink>
                         </nav>
                     )}
