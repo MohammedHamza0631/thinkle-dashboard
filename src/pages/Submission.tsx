@@ -1,101 +1,98 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Submission.css';
 import { Upload, FileText, Clock, CheckCircle, AlertCircle } from 'lucide-react';
+import StatCard from '../components/StatCard';
+import ContentTable from '../components/ContentTable';
+import ContentCard from '../components/ContentCard';
 
 const Submission: React.FC = () => {
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    const tableData = [
+        {
+            id: 1,
+            icon: '📊',
+            title: 'Advanced Excel Tutorial',
+            date: '02-04-2025',
+            views: '1.2k',
+            likes: '200',
+            earning: '₹700',
+            share: '70'
+        },
+        {
+            id: 2,
+            icon: '📝',
+            title: 'Resume Template Pack',
+            date: '02-04-2025',
+            views: '1.2k',
+            likes: '200',
+            earning: '₹700',
+            share: '70'
+        }
+    ];
   return (
-    <div className="submission-page">
-      <div className="submission-header">
-        <h1 className="submission-title">Content Submission</h1>
-        <p className="submission-subtitle">Upload your content to start earning revenue</p>
-      </div>
-
-      <div className="submission-stats-container">
-        <div className="submission-stat-card">
-          <div className="stat-icon">
-            <FileText size={20} />
-          </div>
-          <div className="stat-content">
-            <div className="stat-value">12</div>
-            <div className="stat-label">Total Submissions</div>
-          </div>
-        </div>
-        
-        <div className="submission-stat-card">
-          <div className="stat-icon">
-            <CheckCircle size={20} />
-          </div>
-          <div className="stat-content">
-            <div className="stat-value">8</div>
-            <div className="stat-label">Approved</div>
-          </div>
-        </div>
-        
-        <div className="submission-stat-card">
-          <div className="stat-icon">
-            <Clock size={20} />
-          </div>
-          <div className="stat-content">
-            <div className="stat-value">3</div>
-            <div className="stat-label">Pending Review</div>
-          </div>
-        </div>
-        
-        <div className="submission-stat-card">
-          <div className="stat-icon">
-            <AlertCircle size={20} />
-          </div>
-          <div className="stat-content">
-            <div className="stat-value">1</div>
-            <div className="stat-label">Rejected</div>
-          </div>
-        </div>
-      </div>
-
-      <div className="submission-card">
-        <div className="upload-area">
-          <div className="upload-icon">
-            <Upload size={40} />
-          </div>
-          <h3 className="upload-title">Upload Content</h3>
-          <p className="upload-description">Drag and drop files here or click to browse</p>
-          <button className="upload-button">Select Files</button>
-          <p className="upload-formats">Supported formats: PDF, DOCX, XLSX, PPT, ZIP (max 50MB)</p>
-        </div>
-      </div>
-
-      <div className="submission-card">
-        <h2 className="submission-section-title">Recent Submissions</h2>
-        <div className="submission-list">
-          <div className="submission-item">
-            <div className="submission-item-icon">📊</div>
-            <div className="submission-item-details">
-              <h3 className="submission-item-title">Advanced Excel Tutorial</h3>
-              <p className="submission-item-meta">Submitted on 02-04-2025</p>
+    <div className="dashboard">
+            <div className="dashboard-header">
+                <h1 className="dashboard-title">Thinkle+ Creator</h1>
+                <p className="dashboard-subtitle">Create Content that generate revenue for you</p>
             </div>
-            <div className="submission-item-status pending">Pending Review</div>
-          </div>
-          
-          <div className="submission-item">
-            <div className="submission-item-icon">📝</div>
-            <div className="submission-item-details">
-              <h3 className="submission-item-title">Resume Template Pack</h3>
-              <p className="submission-item-meta">Submitted on 28-03-2025</p>
+
+            <div className="stats-container">
+                <StatCard
+                    title="Views"
+                    value="12.5K"
+                    subtext="Platform: 12,48,960"
+                    growth={26}
+                />
+                <StatCard
+                    title="Earnings"
+                    value="₹1490"
+                    subtext="Pool: ₹5,48,960"
+                    growth={26}
+                />
+                <StatCard
+                    title="Engagement"
+                    value="12.5k"
+                    subtext="352 likes • 100 shares"
+                    growth={26}
+                />
+                <StatCard
+                    title="Content"
+                    value="3"
+                    subtext="1 pending review"
+                />
             </div>
-            <div className="submission-item-status approved">Approved</div>
-          </div>
-          
-          <div className="submission-item">
-            <div className="submission-item-icon">📚</div>
-            <div className="submission-item-details">
-              <h3 className="submission-item-title">Study Guide: Marketing Basics</h3>
-              <p className="submission-item-meta">Submitted on 15-03-2025</p>
-            </div>
-            <div className="submission-item-status approved">Approved</div>
-          </div>
+
+            {isMobile ? (
+                <div className="mobile-content">
+                    {tableData.map((item) => (
+                        <ContentCard
+                            key={item.id}
+                            icon={item.icon}
+                            title={item.title}
+                            views={item.views}
+                            earning={item.earning}
+                            likes={item.likes}
+                            share={item.share}
+                            date={item.date}
+                        />
+                    ))}
+                </div>
+            ) : (
+                <ContentTable data={tableData} />
+            )}
         </div>
-      </div>
-    </div>
   );
 };
 
