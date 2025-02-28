@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Submission.css';
 import StatCard from '../components/StatCard';
-import { FileText } from 'lucide-react';
 
 const Submission: React.FC = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
