@@ -2,6 +2,8 @@
 
 A responsive React dashboard UI for the Thinkle+ Creator platform, built according to design specifications.
 
+Live Preview: [Here](https://thinkle-dashboard.vercel.app/) (Access the submissions route to see the dashboard)
+
 ## Features
 
 - Responsive sidebar navigation for both desktop and mobile views
