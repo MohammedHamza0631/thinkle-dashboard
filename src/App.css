@@ -29,6 +29,7 @@ body {
 .app {
   display: flex;
   min-height: 100vh;
+  position: relative;
 }
 
 .main-content {
@@ -43,9 +44,17 @@ body {
   .main-content {
     width: 100%;
     margin-left: 0;
+    position: relative;
+    z-index: 1;
   }
 
-  .main-content.sidebar-open {
-    margin-left: var(--sidebar-width);
+  .sidebar {
+    position: fixed;
+    z-index: 1000;
+  }
+
+  .mobile-header {
+    position: fixed;
+    z-index: 900;
   }
 }

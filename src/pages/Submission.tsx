@@ -24,9 +24,9 @@ const Submission: React.FC = () => {
             title: 'Advanced Excel Tutorial',
             date: '02-04-2025',
             views: '1.2k',
-            likes: '200',
+            likes: '450',
             earning: '₹700',
-            share: '70'
+            share: '29'
         },
         {
             id: 2,
@@ -34,131 +34,111 @@ const Submission: React.FC = () => {
             title: 'Resume Template Pack',
             date: '02-04-2025',
             views: '1.2k',
-            likes: '200',
+            likes: '450',
             earning: '₹700',
-            share: '70'
+            share: '29'
         }
     ];
 
     return (
-        
-            <div className="dashboard page">
-                <div className="dashboard-header">
-                    <h1 className="dashboard-title">Thinkle+ Creator</h1>
-                    <p className="dashboard-subtitle">Create Content that generate revenue for you</p>
-                </div>
+        <div className="page">
+            <div className="page-header">
+                <h1 className="page-title">Thinkle+ Creator</h1>
+                <p className="page-subtitle">Create Content that generate revenue for you</p>
+            </div>
 
-                <div className="stats-container">
-                    <StatCard
-                        title="Views"
-                        value="12.5K"
-                        subtext="Platform: 12,48,960"
-                        growth={26}
-                    />
-                    <StatCard
-                        title="Earnings"
-                        value="₹1490"
-                        subtext="Pool: ₹5,48,960"
-                        growth={26}
-                    />
-                    <StatCard
-                        title="Engagement"
-                        value="12.5k"
-                        subtext="352 likes • 100 shares"
-                        growth={26}
-                    />
-                    <StatCard
-                        title="Content"
-                        value="3"
-                        subtext="1 pending review"
-                    />
-                </div>
+            <div className="stats-grid">
+                <StatCard
+                    title="Views"
+                    value="12.5K"
+                    subtext="Platform: 12,48,960"
+                    growth={26}
+                />
+                <StatCard
+                    title="Earnings"
+                    value="₹1490"
+                    subtext="Pool: ₹5,48,960"
+                    growth={26}
+                />
+                <StatCard
+                    title="Engagement"
+                    value="12.5k"
+                    subtext="352 likes • 100 shares"
+                    growth={26}
+                />
+                <StatCard
+                    title="Content"
+                    value="3"
+                    subtext="1 pending review"
+                />
+            </div>
 
-                {isMobile ? (
-                    <div className="mobile-content">
-                        {tableData.map((item) => (
-                            <div key={item.id} className="content-card-mobile">
-                                <div className="post-cell-mobile">
-                                    <div className="post-icon-mobile">
-                                        {item.icon === '📊' ? (
-                                            <div className="excel-icon">
-                                                <FileText size={20} color="#fff" />
-                                            </div>
-                                        ) : (
-                                            <div className="resume-icon">
-                                                <FileText size={20} color="#fff" />
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div className="post-title-mobile">{item.title}</div>
+            {isMobile ? (
+                <div className="mobile-content">
+                    <div className="content-card">
+                        {tableData.map((item, index) => (
+                            <div key={item.id} className="mobile-row">
+                                <div className="mobile-post">
+                                    <div className="post-icon">{item.icon}</div>
+                                    <div className="post-title">{item.title}</div>
                                 </div>
-                                <div className="mobile-stats-grid">
-                                    <div className="mobile-stat">
-                                        <div className="mobile-stat-value">{item.views}</div>
-                                        <div className="mobile-stat-label">Views</div>
+                                <div className="mobile-stats">
+                                    <div className="mobile-stat-row">
+                                        <div className="mobile-stat">
+                                            <span className="stat-value">{item.views}</span>
+                                            <span className="stat-label">Views</span>
+                                        </div>
+                                        <div className="mobile-stat">
+                                            <span className="stat-value">{item.earning}</span>
+                                            <span className="stat-label">Earning</span>
+                                        </div>
                                     </div>
-                                    <div className="mobile-stat">
-                                        <div className="mobile-stat-value">{item.earning}</div>
-                                        <div className="mobile-stat-label">Earning</div>
-                                    </div>
-                                    <div className="mobile-stat">
-                                        <div className="mobile-stat-value">{item.likes}</div>
-                                        <div className="mobile-stat-label">Likes</div>
-                                    </div>
-                                    <div className="mobile-stat">
-                                        <div className="mobile-stat-value">{item.share}</div>
-                                        <div className="mobile-stat-label">Share</div>
+                                    <div className="mobile-stat-row">
+                                        <div className="mobile-stat">
+                                            <span className="stat-value">{item.likes}</span>
+                                            <span className="stat-label">Likes</span>
+                                        </div>
+                                        <div className="mobile-stat">
+                                            <span className="stat-value">{item.share}</span>
+                                            <span className="stat-label">Share</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="mobile-date">
-                                    <div className="mobile-date-label">Date</div>
-                                    <div className="mobile-date-value">{item.date}</div>
+                                    <span className="date-label">Date</span>
+                                    <span className="date-value">{item.date}</span>
                                 </div>
-
+                                {index < tableData.length - 1 && <div className="mobile-divider" />}
                             </div>
                         ))}
                     </div>
-                ) : (
-                    <div className="content-table-container">
-                        <table className="content-table">
-                            <thead>
-                                <tr>
-                                    <th>Post</th>
-                                    <th>Date</th>
-                                    <th>views</th>
-                                    <th>likes</th>
-                                    <th>Earning</th>
-                                    <th>Share</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {tableData.map((item) => (
-                                    <tr key={item.id}>
-                                        <td className="post-cell">
-                                            {item.icon === '📊' ? (
-                                                <div className="excel-icon">
-                                                    <FileText size={20} color="#fff" />
-                                                </div>
-                                            ) : (
-                                                <div className="resume-icon">
-                                                    <FileText size={20} color="#fff" />
-                                                </div>
-                                            )}
-                                            <span>{item.title}</span>
-                                        </td>
-                                        <td>{item.date}</td>
-                                        <td>{item.views}</td>
-                                        <td>{item.likes}</td>
-                                        <td>{item.earning}</td>
-                                        <td>{item.share}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                </div>
+            ) : (
+                <div className="content-table">
+                    <div className="table-header">
+                        <div className="header-cell">Post</div>
+                        <div className="header-cell">Date</div>
+                        <div className="header-cell">views</div>
+                        <div className="header-cell">likes</div>
+                        <div className="header-cell">Earning</div>
+                        <div className="header-cell">Share</div>
                     </div>
-                )}
-            </div>
-        
+                    {tableData.map((item) => (
+                        <div key={item.id} className="content-row">
+                            <div className="post">
+                                <div className="post-icon">{item.icon}</div>
+                                <div className="post-title">{item.title}</div>
+                            </div>
+                            <div className="content-cell">{item.date}</div>
+                            <div className="content-cell">{item.views}</div>
+                            <div className="content-cell">{item.likes}</div>
+                            <div className="content-cell">{item.earning}</div>
+                            <div className="content-cell">{item.share}</div>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
     );
 };
 
